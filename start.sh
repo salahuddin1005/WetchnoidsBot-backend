@@ -1,21 +1,21 @@
+#!/bin/bash
 set -eu
 
 export PYTHONUNBUFFERED=true
 
-VIRTUUALENV=.data/venv
+VIRTUALENV=".data/venv"
 
-if [ ! -d $VIRTUUALENV ]; then
-    python3 -m venv $VIRTUUALENV
-    source $VIRTUUALENV/bin/activate
+if [ ! -d "$VIRTUALENV" ]; then
+    python3 -m venv "$VIRTUALENV"
+    source "$VIRTUALENV/bin/activate"
     pip install -r requirements.txt
 else
-    source $VIRTUUALENV/bin/activate
+    source "$VIRTUALENV/bin/activate"
 fi
 
-if [ ! -f $VIRTUUALENV/bin/pip ]; then
-    curl --silent --show-error --retry 5 https://bootstrap.pypa.io/get-pip.py | $VIRTUUALENV/bin/python
+if [ ! -f "$VIRTUALENV/bin/pip" ]; then
+    curl --silent --show-error --retry 5 https://bootstrap.pypa.io/get-pip.py | "$VIRTUALENV/bin/python"
 fi
 
-$VIRTUUALENV/bin/pip install -r requirements.txt
-
-$VIRTUUALENV/bin/python main.py
+"$VIRTUALENV/bin/pip" install -r requirements.txt
+"$VIRTUALENV/bin/python" main.py
